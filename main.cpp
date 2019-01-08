@@ -33,9 +33,7 @@ int main(int argc, char* argv[])
     QObject::connect(pDialog, SIGNAL(clicked(bool)), &win, SLOT(getWay()));
     QObject::connect(&win, SIGNAL(changeText(QString)), le, SLOT(setText(QString)));
     QObject::connect(pCom, SIGNAL(clicked(bool)), &win, SLOT(compFunc()));
-
-//    decompress(InputFileCoding, OutputFileDecoding);
-//    compress(InputFileDecoding,  OutputFileCoding);
+    QObject::connect(pDecom, SIGNAL(clicked(bool)), &win, SLOT(decompFunc()));
 
     return app.exec();
 }

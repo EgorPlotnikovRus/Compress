@@ -1,5 +1,6 @@
 #include "window.h"
 #include "compress.h"
+#include "decompress.h"
 #include <string>
 #include <iostream>
 
@@ -27,4 +28,12 @@ void Window::compFunc()
     std::string sOut = strOut.toUtf8().constData();
     sOut += ".asd";
     compress(sIn, sOut);
+}
+
+void Window::decompFunc()
+{
+    std::string sIn = strIn.toUtf8().constData();
+    std::string sOut = strOut.toUtf8().constData();
+    sOut += ".txt";
+    decompress(sIn, sOut);
 }

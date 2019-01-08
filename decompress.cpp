@@ -53,7 +53,7 @@ void decompress(string InF, string OuF)
         for(map<char, vector<bool>>::iterator it = table.begin(); it != table.end(); ++it)
             if(code == it -> second)
             {
-                cout << it -> first;
+                OFile << it -> first;
                 code.clear();
             }
 

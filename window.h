@@ -23,7 +23,7 @@ public:
 public slots:
     void getWay();
     void compFunc();
-
+    void decompFunc();
 signals:
     void changeText(QString);
 };

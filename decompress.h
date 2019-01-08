@@ -1,6 +1,8 @@
 #ifndef DECOMPRESS_H
 #define DECOMPRESS_H
 
-void decompress(string InF, string OuF);
+#include <string>
+
+void decompress(std::string InF, std::string OuF);
 
 #endif // DECOMPRESS_H
