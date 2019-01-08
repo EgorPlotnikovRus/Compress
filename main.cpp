@@ -1,28 +1,45 @@
+#include "window.h"
 #include "head.h"
 #include "compress.h"
 #include "decompress.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-    setlocale(LC_ALL, NULL);
+    QApplication app(argc, argv);
+    QWidget wgt;
+    QHBoxLayout* phb = new QHBoxLayout;
+    QLineEdit* le = new QLineEdit;
+    QPushButton* pDialog = new QPushButton;
+    QPushButton* pCom = new QPushButton;
+    QPushButton* pDecom = new QPushButton;
+    QFileSystemModel model;
+    Window win;
 
-    string InputFileCoding = "InputFileCoding.bin";
-    string InputFileDecoding = "InputFileDecoding.txt";
-    string OutputFileDecoding = "OutputFileDecoding.txt";
-    string OutputFileCoding = "OutputFileCoding.bin";
+    model.setRootPath(QDir::rootPath());
 
-    cout << "Enter 0 to compress, enter 1 to decompress" << endl;
+    pCom->setText("Compress");
+    pDecom->setText("Decompress");
+    pDialog->setText("...");
 
-    bool flag;
+    phb->addWidget(le);
+    phb->addWidget(pDialog);
+    phb->addWidget(pCom);
+    phb->addWidget(pDecom);
 
-    cim >> flag;
+    wgt.setLayout(phb);
 
-    if(flag)
-        decompress(InputFileCoding, OutputFileDecoding);
+    wgt.show();
 
-    else
-        compress(InputFileDecoding,  OutputFileCoding);
+    QObject::connect(pDialog, SIGNAL(clicked(bool)), &win, SLOT(getWay()));
+    QObject::connect(&win, SIGNAL(changeText(QString)), le, SLOT(setText(QString)));
 
+//    string InputFileCoding = "InputFileCoding.bin";
+//    string InputFileDecoding = "InputFileDecoding.txt";
+//    string OutputFileDecoding = "OutputFileDecoding.txt";
+//    string OutputFileCoding = "OutputFileCoding.bin";
 
-    return 0;
+//    decompress(InputFileCoding, OutputFileDecoding);
+//    compress(InputFileDecoding,  OutputFileCoding);
+
+    return app.exec();
 }
