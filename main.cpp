@@ -32,11 +32,7 @@ int main(int argc, char* argv[])
 
     QObject::connect(pDialog, SIGNAL(clicked(bool)), &win, SLOT(getWay()));
     QObject::connect(&win, SIGNAL(changeText(QString)), le, SLOT(setText(QString)));
-
-//    string InputFileCoding = "InputFileCoding.bin";
-//    string InputFileDecoding = "InputFileDecoding.txt";
-//    string OutputFileDecoding = "OutputFileDecoding.txt";
-//    string OutputFileCoding = "OutputFileCoding.bin";
+    QObject::connect(pCom, SIGNAL(clicked(bool)), &win, SLOT(compFunc()));
 
 //    decompress(InputFileCoding, OutputFileDecoding);
 //    compress(InputFileDecoding,  OutputFileCoding);

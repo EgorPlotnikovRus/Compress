@@ -8,6 +8,9 @@
 #include <QApplication>
 #include <QWidget>
 
+inline QString strIn;
+inline QString strOut;
+
 class Window : public QObject
 {
     Q_OBJECT
@@ -19,7 +22,9 @@ public:
 
 public slots:
     void getWay();
+    void compFunc();
 
 signals:
     void changeText(QString);
 };
+

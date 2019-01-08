@@ -7,6 +7,8 @@
 #include <fstream>
 #include <iostream>
 #include <numeric>
+#include <QString>
+#include <QFile>
 
 using namespace std;
 

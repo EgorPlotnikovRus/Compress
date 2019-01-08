@@ -1,6 +1,6 @@
 #ifndef COMPRESS_H
 #define COMPRESS_H
-
-void compress(string InF, string OuF);
+#include <string>
+void compress(std::string InF, std::string OuF);
 
 #endif // COMPRESS_H
