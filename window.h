@@ -8,9 +8,6 @@
 #include <QApplication>
 #include <QWidget>
 
-inline QString strIn;
-inline QString strOut;
-
 class Window : public QObject
 {
     Q_OBJECT

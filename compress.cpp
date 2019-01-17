@@ -92,11 +92,9 @@ void compress(string InF, string OuF)
     BuildTable(root);
 
     ofstream g;
-    ofstream testTable, testText;
-    testTable.open("/home/egor/Документы/Time/testTable.txt");
-    testText.open("/home/egor/Документы/Time/testText.txt");
     g.open(OuF);
     file.open(InF);
+
     int count = 0;
     char buf = 0;
     while (!file.eof())

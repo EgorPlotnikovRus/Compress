@@ -10,8 +10,9 @@ void decompress(string InF, string OuF)
     string s;
     string buff;
     map<char, vector<bool> > table;
-    ifstream File;
-    File.open(InF);
+    ifstream File(InF);
+    ofstream testText("/home/egor/Документы/Time/DecompressTestText");//**************************TEST*******************************
+    ofstream testTable("/home/egor/Документы/Time/DecompressTestTable");//**************************TEST*******************************
 
     while(getline(File, str)){}
     File.close();
@@ -30,6 +31,7 @@ void decompress(string InF, string OuF)
         else
         {
             table[c] = code;
+            testTable << c << " - " << code << endl;//**************************TEST*******************************
             c = str[n];
             code.clear();
         }
@@ -39,8 +41,8 @@ void decompress(string InF, string OuF)
     code.clear();
 
     File.open(InF);
-    ofstream OFile;
-    OFile.open(OuF);
+    ofstream OFile(OuF);
+
     char byte;
     int count = 0;
     byte = File.get();
@@ -48,6 +50,7 @@ void decompress(string InF, string OuF)
     while(!File.eof())
     {
         bool b = byte & (1 << (7 - count));
+        testText << b; //**************************TEST*******************************
         code.push_back(b);
 
         for(map<char, vector<bool>>::iterator it = table.begin(); it != table.end(); ++it)
