@@ -95,6 +95,9 @@ void compress(string InF, string OuF)
     g.open(OuF);
     file.open(InF);
 
+    ofstream testTable("/home/egor/Документы/Time/CompressTestTable");//**************************TEST*******************************
+    ofstream testText("/home/egor/Документы/Time/CompressTestText");//**************************TEST*******************************
+
     int count = 0;
     char buf = 0;
     while (!file.eof())
@@ -104,13 +107,15 @@ void compress(string InF, string OuF)
         for(int n=0; n < x.size(); ++n)
             {buf = buf | x[n] << (7 - count);
         count++;
-        if (count == 8) {count = 0;   g << buf; buf = 0; }
+        if (count == 8) {count = 0; g << buf; buf = 0; }
        }
     }
 
-    for(map<char, vector<bool> >::iterator it = tbl.begin(); it != tbl.end(); ++it)
+    map<char, vector<bool> >::iterator iter = tbl.begin();
+    for(++iter; iter != tbl.end(); ++iter)
     {
-        g << it -> first << it -> second;
+        testTable << iter -> first << iter -> second;//**************************TEST*******************************
+        g << iter -> first << iter -> second;
     }
 
     file.close();

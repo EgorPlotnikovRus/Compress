@@ -38,6 +38,8 @@ void decompress(string InF, string OuF)
     }
     table[c] = code;
 
+    testTable << c << " - " << code << endl;//**************************TEST*******************************
+
     code.clear();
 
     File.open(InF);
@@ -47,7 +49,7 @@ void decompress(string InF, string OuF)
     int count = 0;
     byte = File.get();
 
-    while(!File.eof())
+    while(!File.eof() || byte != '\n')
     {
         bool b = byte & (1 << (7 - count));
         testText << b; //**************************TEST*******************************
