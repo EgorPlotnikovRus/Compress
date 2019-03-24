@@ -6,16 +6,14 @@ bool to_bool(char s) {
 
 void decompress(string InF, string OuF)
 {
-    string str;
-    string s;
-    string buff;
+    string str, s;
     map<char, vector<bool> > table;
     ifstream File(InF);
-    ofstream testText("/home/egor/Документы/Time/DecompressTestText");//**************************TEST*******************************
-    ofstream testTable("/home/egor/Документы/Time/DecompressTestTable");//**************************TEST*******************************
 
-    while(getline(File, str)){}
+    while(getline(File, str)){s += str;}
     File.close();
+
+    s.resize(s.size() - str.size());
 
     char c = str[0];
     vector<bool> code;
@@ -31,14 +29,11 @@ void decompress(string InF, string OuF)
         else
         {
             table[c] = code;
-            testTable << c << " - " << code << endl;//**************************TEST*******************************
             c = str[n];
             code.clear();
         }
     }
     table[c] = code;
-
-    testTable << c << " - " << code << endl;//**************************TEST*******************************
 
     code.clear();
 
@@ -46,13 +41,15 @@ void decompress(string InF, string OuF)
     ofstream OFile(OuF);
 
     char byte;
-    int count = 0;
     byte = File.get();
 
-    while(!File.eof() || byte != '\n')
+    bool b;
+    for(int i = 0; i < s.size(); ++i)
     {
-        bool b = byte & (1 << (7 - count));
-        testText << b; //**************************TEST*******************************
+        byte = s[i];
+        for(int count = 0; count < 8; ++count)
+        {
+        b = byte & (1 << (7 - count));
         code.push_back(b);
 
         for(map<char, vector<bool>>::iterator it = table.begin(); it != table.end(); ++it)
@@ -61,19 +58,17 @@ void decompress(string InF, string OuF)
                 OFile << it -> first;
                 code.clear();
             }
-
-        ++count;
-
-        if(count == 8)
-        {
-            count = 0;
-            byte = File.get();
         }
     }
-    cout << endl;
+
+    code.push_back(b);
+    for(map<char, vector<bool>>::iterator it = table.begin(); it != table.end(); ++it)
+        if(code == it -> second)
+        {
+            OFile << it -> first;
+            code.clear();
+        }
 
     OFile.close();
     File.close();
-
-    cout << "Decopmressing complete" << endl;
 }

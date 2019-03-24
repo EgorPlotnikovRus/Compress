@@ -95,9 +95,6 @@ void compress(string InF, string OuF)
     g.open(OuF);
     file.open(InF);
 
-    ofstream testTable("/home/egor/Документы/Time/CompressTestTable");//**************************TEST*******************************
-    ofstream testText("/home/egor/Документы/Time/CompressTestText");//**************************TEST*******************************
-
     int count = 0;
     char buf = 0;
     while (!file.eof())
@@ -113,14 +110,8 @@ void compress(string InF, string OuF)
 
     map<char, vector<bool> >::iterator iter = tbl.begin();
     for(++iter; iter != tbl.end(); ++iter)
-    {
-        testTable << iter -> first << iter -> second;//**************************TEST*******************************
         g << iter -> first << iter -> second;
-    }
 
     file.close();
     g.close();
-
-    cout << "Copmressing complete" << endl;
-
 }
